@@ -15,11 +15,13 @@ const DATA = [
         title: 'Mitsubishi',
     },
 ];
+
 const Item = ({ title }) => (
     <View style={styles.item}>
         <Text style={styles.title}>{title}</Text>
     </View>
 );
+
 const App = () => {
     const renderItem = ({ item }) => (
         <Item title={item.title} />
@@ -33,7 +35,8 @@ const App = () => {
             />
         </SafeAreaView>
     );
-}
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
