@@ -1,78 +1,80 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, FlatList, StatusBar} from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, StatusBar } from 'react-native';
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
 
-export default function Dogs(){
-    const DATA = [
+export default function Dogs() {
+    const json_info = [
         {
-            id: '1',
-            title: 'Bulldog',
-            src: require('../images/bulldog.png'),
-        },
-        {
-            id: '2',
-            title: 'Pastor alemán',
-            src: require('../images/pastor.jpg'),
+            id: '5',
+            title: 'Husky',
+            origen: 'Rusia',
+            src: require('../images/husky.jpg'),
         },
         {
             id: '3',
             title: 'Pomerania',
+            origen: 'Alemania',
             src: require('../images/pomerania.png'),
         },
         {
+            id: '1',
+            title: 'Bulldog',
+            origen: 'Reino Unido',
+            src: require('../images/bulldog.png'),
+        },
+
+
+        {
             id: '4',
-            title: 'Labrador',
+            origen: 'Alemania',
+            title: 'Canadá',
             src: require('../images/labrador.jpg'),
         },
         {
-            id: '5',
-            title: 'Husky',
-            src: require('../images/husky.jpg'),
+            id: '2',
+            origen: 'Alemania',
+            title: 'Pastor alemán',
+            src: require('../images/pastor.jpg'),
         },
+
     ];
 
-    const Item = ({ title, img }) => (
-        <View style={styles.item}> 
-          <Text style={styles.title}>{title}</Text>
-          <Image style={styles.img} source={img}/>
+    const Item = ({ title, src, origen }) => (
+        <View style={styles.user}>
+            <Image resizeMode="cover" style={styles.img} source={src} />
+            <Text style={styles.name}>{title}</Text>
+            <Text style={styles.name}>{origen}</Text>
         </View>
     );
-    
+
     const renderItem = ({ item }) => (
-    <Item title={item.title} img={item.src} />
+        <Item {...item} img={item} />
     );
 
-    return(
-        <View style={styles.container}>
+    return (
+        <Card>
             <FlatList
-                data={DATA}
+                data={json_info}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
             />
-        </View>
+        </Card>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      marginTop: StatusBar.currentHeight || 0,
+        flex: 1,
+        marginTop: StatusBar.currentHeight || 0,
     },
-    item: {
-      backgroundColor: '#f9c2ff',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: 16,
-      alignItems: 'center',
-    },
-    title: {
-      fontSize: 32,
-    },  
     img: {
-      width: 200,
-      height: 125,
-      borderWidth: 2,
-      borderColor: '#d35647',
-      resizeMode: 'contain',
-      margin: 8,
+        width: 150,
+        height: 120,
+        resizeMode: 'cover',
+        margin: 8,
     },
+    user: {
+        borderBottomWidth: 1,
+        paddingVertical: 15
+    }
 });
