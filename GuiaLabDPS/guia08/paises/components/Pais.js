@@ -9,6 +9,7 @@ export default Pais = ({ resultado }) => {
     const [capital, setcapital] = useState();
     const [region, setregion] = useState();
     const [lengua, setlengua] = useState([]);
+    const [area, setArea] = useState();
 
     useEffect(() => {
         setinfo(resultado);
@@ -17,7 +18,7 @@ export default Pais = ({ resultado }) => {
             setnombre(e.nome.abreviado);
             setcapital(e.governo.capital.nome);
             setregion(e.localizacao.regiao.nome);
-
+            setArea(e.area.total);
             Object.values(e.linguas).map(l => {
                 lengua.push(l.nome);
             })
@@ -31,6 +32,7 @@ export default Pais = ({ resultado }) => {
                 <Text>Capital: {capital}</Text>
                 <Text>Region:{region}</Text>
                 <Text>Lengua:{lengua.toString()}</Text>
+                <Text>Área:{area} km2</Text>
             </View>
         </Card>
     );
